@@ -9,6 +9,20 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
+      resolve: `gatsby-source-wordpress`,
+        options: {
+            // Specify the URL of the WordPress source
+            baseUrl: `pierre-delaunay.fr/`,
+            protocol: `https`,
+            // Indicates if a site is hosted on WordPress.com
+            hostingWPCOM: false,
+            // Specify which URL structures to fetch
+            includedRoutes: [
+              '**/posts',
+              '**/tags',
+              '**/categories'
+            ]
+        },
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
