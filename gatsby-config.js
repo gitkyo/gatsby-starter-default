@@ -8,27 +8,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-source-wordpress`,
-        options: {
-            // Specify the URL of the WordPress source
-            baseUrl: `pierre-delaunay.fr/`,
-            protocol: `https`,
-            // Indicates if a site is hosted on WordPress.com
-            hostingWPCOM: false,
-            // Specify which URL structures to fetch
-            includedRoutes: [
-              '**/posts',
-              '**/tags',
-              '**/categories'
-            ]
-        },
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -47,5 +26,16 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "allWpPost",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "allWpPost",
+        // Url to query from
+        url: "http://wordpress0821.local/graphql",
+      },
+    }
   ],
 }
